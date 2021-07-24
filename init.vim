@@ -9,6 +9,7 @@ call plug#begin()
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'junegunn/vim-easy-align'
 	Plug 'sheerun/vim-polyglot'
+	Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)

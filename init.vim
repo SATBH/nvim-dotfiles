@@ -1,6 +1,6 @@
 set termguicolors
 set nu rnu
-
+set hidden
 call plug#begin()
 	Plug 'morhetz/gruvbox'
 	Plug 'Olical/aniseed', { 'tag': 'v3.19.0' }
@@ -10,14 +10,23 @@ call plug#begin()
 	Plug 'junegunn/vim-easy-align'
 	Plug 'sheerun/vim-polyglot'
 	Plug 'nvim-lua/completion-nvim'
+	Plug 'nvim-treesitter/playground'
+	Plug 'voldikss/vim-floaterm'
 call plug#end()
 
+let mapleader = ' '
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+map <C-F> :FloatermNew fzf --preview "nvim {}"<CR>
+nmap <C-J> :m +1<CR>
+nmap <C-K> :m -2<CR>
+map <leader><leader> <C-^>
+
 let g:aniseed#env = v:true
-colo gruvbox
+colo torte
 let g:rainbow_active = 1
+let g:floaterm_opener = 'edit'

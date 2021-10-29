@@ -12,6 +12,11 @@ call plug#begin()
 	Plug 'nvim-lua/completion-nvim'
 	Plug 'nvim-treesitter/playground'
 	Plug 'voldikss/vim-floaterm'
+	Plug 'navarasu/onedark.nvim'
+	Plug 'tiagovla/tokyodark.nvim'
+	Plug 'arcticicestudio/nord-vim'
+	Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
+	Plug 'jbyuki/instant.nvim'
 call plug#end()
 
 let mapleader = ' '
@@ -27,6 +32,8 @@ nmap <C-K> :m -2<CR>
 map <leader><leader> <C-^>
 
 let g:aniseed#env = v:true
-colo torte
+
 let g:rainbow_active = 1
+
 let g:floaterm_opener = 'edit'
+"let g:instant_username = 'satbh'

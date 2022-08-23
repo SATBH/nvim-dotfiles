@@ -1,0 +1,18 @@
+return {
+	'nvim-treesitter/nvim-treesitter',
+	'rktjmp/hotpot.nvim',
+	'morhetz/gruvbox',
+	'sainnhe/gruvbox-material',
+	'bakpakin/fennel.vim',
+	'wbthomason/packer.nvim',
+	'jbyuki/instant.nvim',
+	'arcticicestudio/nord-vim',
+	'gpanders/nvim-parinfer',
+	'sainnhe/everforest',
+	'joshdick/onedark.vim',
+	'easymotion/vim-easymotion',
+  'Pocco81/true-zen.nvim',
+  'Olical/conjure',
+  {'shaunsingh/oxocarbon.nvim', run = './install.sh'},
+  {'charludo/projectmgr.nvim', rocks = {'lsqlite3'}},
+}

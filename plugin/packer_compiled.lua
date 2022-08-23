@@ -69,14 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["diaglist.nvim"] = {
-    config = { "\27LJ\2\0021\0\0\2\0\3\0\0056\0\0\0'\1\1\0B\0\2\0029\1\2\0D\1\1\0\tinit\rdiaglist\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/home/satbh/.local/share/nvim/site/pack/packer/opt/diaglist.nvim",
-    url = "https://github.com/onsails/diaglist.nvim"
-  },
   everforest = {
     loaded = true,
     path = "/home/satbh/.local/share/nvim/site/pack/packer/start/everforest",
@@ -87,81 +79,74 @@ _G.packer_plugins = {
     path = "/home/satbh/.local/share/nvim/site/pack/packer/start/fennel.vim",
     url = "https://github.com/bakpakin/fennel.vim"
   },
-  ["null-ls.nvim"] = {
+  gruvbox = {
     loaded = true,
-    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/morhetz/gruvbox"
+  },
+  ["gruvbox-material"] = {
+    loaded = true,
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/gruvbox-material",
+    url = "https://github.com/sainnhe/gruvbox-material"
+  },
+  ["hotpot.nvim"] = {
+    loaded = true,
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/hotpot.nvim",
+    url = "https://github.com/rktjmp/hotpot.nvim"
+  },
+  ["instant.nvim"] = {
+    loaded = true,
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/instant.nvim",
+    url = "https://github.com/jbyuki/instant.nvim"
+  },
+  ["nord-vim"] = {
+    loaded = true,
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/nord-vim",
+    url = "https://github.com/arcticicestudio/nord-vim"
+  },
+  ["nvim-parinfer"] = {
+    loaded = true,
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/nvim-parinfer",
+    url = "https://github.com/gpanders/nvim-parinfer"
   },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/satbh/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["onedark.vim"] = {
+    loaded = true,
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/onedark.vim",
+    url = "https://github.com/joshdick/onedark.vim"
+  },
+  ["oxocarbon.nvim"] = {
+    loaded = true,
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/oxocarbon.nvim",
+    url = "https://github.com/shaunsingh/oxocarbon.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/satbh/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["plenary.nvim"] = {
+  ["projectmgr.nvim"] = {
     loaded = true,
-    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/plenary.nvim",
-    url = "https://github.com/nvim-lua/plenary.nvim"
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/projectmgr.nvim",
+    url = "https://github.com/charludo/projectmgr.nvim"
   },
-  ["telescope.nvim"] = {
+  ["vim-easymotion"] = {
     loaded = true,
-    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/telescope.nvim",
-    url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["vim-parinfer"] = {
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/home/satbh/.local/share/nvim/site/pack/packer/opt/vim-parinfer",
-    url = "https://github.com/bhurlow/vim-parinfer"
+    path = "/home/satbh/.local/share/nvim/site/pack/packer/start/vim-easymotion",
+    url = "https://github.com/easymotion/vim-easymotion"
   }
 }
 
 time([[Defining packer_plugins]], false)
-local module_lazy_loads = {
-  ["^diaglist"] = "diaglist.nvim"
-}
-local lazy_load_called = {['packer.load'] = true}
-local function lazy_load_module(module_name)
-  local to_load = {}
-  if lazy_load_called[module_name] then return nil end
-  lazy_load_called[module_name] = true
-  for module_pat, plugin_name in pairs(module_lazy_loads) do
-    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
-      to_load[#to_load + 1] = plugin_name
-    end
-  end
-
-  if #to_load > 0 then
-    require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
-    local loaded_mod = package.loaded[module_name]
-    if loaded_mod then
-      return function(modname) return loaded_mod end
-    end
-  end
-end
-
-if not vim.g.packer_custom_loader_enabled then
-  table.insert(package.loaders, 1, lazy_load_module)
-  vim.g.packer_custom_loader_enabled = true
-end
-
-vim.cmd [[augroup packer_load_aucmds]]
-vim.cmd [[au!]]
-  -- Filetype lazy-loads
-time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType lisp ++once lua require("packer.load")({'vim-parinfer'}, { ft = "lisp" }, _G.packer_plugins)]]
-vim.cmd [[au FileType fennel ++once lua require("packer.load")({'vim-parinfer'}, { ft = "fennel" }, _G.packer_plugins)]]
-time([[Defining lazy-load filetype autocommands]], false)
-vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end
